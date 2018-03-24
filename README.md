@@ -14,3 +14,9 @@ This is a recreation of the Articulate Flashcards app. You can click on cards to
 • Test with various JSON inputs
 
 ## Screenshots
+
+![AllFrontCards](https://raw.githubusercontent.com/torihuang/Flashcards/master/src/assets/screenshots/AllFrontCards.png)
+
+![SomeBackCards](https://raw.githubusercontent.com/torihuang/Flashcards/master/src/assets/screenshots/SomeBackCards.png)
+
+![TwoCards](https://raw.githubusercontent.com/torihuang/Flashcards/master/src/assets/screenshots/TwoCards.png)
