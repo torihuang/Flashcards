@@ -2,17 +2,29 @@ import React from 'react'
 import { branch, renderComponent }  from 'recompose'
 import './style.css'
 
+// Mark card as complete aka isVisible is false
+const MarkAsCompleteButton = (props) => (
+  <div onClick={props.markAsComplete} className='click-to-flip'>Done</div>
+)
+
+// BACK of card
 const isImageCardBack = (props) => {
   return props.flashcard.backImage
 }
 
 const ImageCardBack = (props) => (
-  <img className='card-image' src={props.flashcard.backImage} />
+  <div className='card-image'>
+    <img className='card-image' src={props.flashcard.backImage} alt='back of card' />
+    <MarkAsCompleteButton
+      markAsComplete={() => props.markAsComplete(props.flashcard._id)} />
+  </div>
 )
 
 const TextCardBack = props => (
   <div className={props.flashcard.backText.length >= 20 ? 'card-content' : 'card-words'}>
     {props.flashcard.backText}
+    <MarkAsCompleteButton
+      markAsComplete={() => props.markAsComplete(props.flashcard._id)} />
   </div>
 )
 
@@ -21,12 +33,13 @@ const ImageOrTextCardBack = branch(
   renderComponent(ImageCardBack)
 )(TextCardBack)
 
+// FRONT of card
 const isImageCardFront = (props) => {
   return props.flashcard.frontImage
 }
 
 const ImageCardFront = (props) => (
-  <img className='card-image' src={props.flashcard.frontImage} />
+  <img className='card-image' src={props.flashcard.frontImage} alt='front of card' />
 )
 
 const TextCardFront = props => (
@@ -48,13 +61,15 @@ const Card = (props) => (
         <ImageOrTextCardFront
           isFirst={props.isFirst}
           flipCard={props.flipCard}
-          flashcard={props.flashcard} />
+          flashcard={props.flashcard}
+          markAsComplete={props.markAsComplete} />
       </div>
       <div className='card-side back-side'>
         <ImageOrTextCardBack
           isFirst={props.isFirst}
           flipCard={props.flipCard}
-          flashcard={props.flashcard} />
+          flashcard={props.flashcard}
+          markAsComplete={props.markAsComplete} />
       </div>
     </div>
   </a>
